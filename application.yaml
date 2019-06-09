@@ -30,9 +30,14 @@ micronaut:
     static-resources:
       default:
         enabled: true
+        mapping: /**
+        paths:
+          - file:/home/snello/public
+      public:
+        enabled: true
         mapping: /files/**
         paths:
-          - file:/home/snello/files
+          - file:/home/snello/public/files
       admin:
         enabled: true
         mapping: /admin/**
