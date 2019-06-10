@@ -33,7 +33,7 @@ micronaut:
         mapping: /**
         paths:
           - file:/home/snello/public
-      public:
+      files:
         enabled: true
         mapping: /files/**
         paths:
