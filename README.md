@@ -12,7 +12,7 @@ Snello backend and snello api in a single docker image.
 - **for developers (git clone, build and run):**
   - git clone https://github.com/snello-cms/snello-all-in-one.git
   - cd  snello-all-in-one
-  - docker build -t snellocms/snello-all-in-one . --no-cache
+  - docker build --no-cache -t snellocms/snello-all-in-one .
 
 - **to open debug port:**
   - docker run -t -i -p 8080:8080 -e JAVA_OPTS=-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:8787  snellocms/snello-all-in-one
