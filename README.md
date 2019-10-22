@@ -3,11 +3,9 @@ Snello backend and snello api in a single docker image.
 
 **Enjoy fast! enjoy SNELLO!**
 
-
 - **to run on 8080 port:**
   - docker run -t -i -p 8080:8080 snellocms/snello-all-in-one
   - open the browser in: http://localhost:8080/admin (using username: admin - password: admin)
-
 
 - **for developers (git clone, build and run):**
   - git clone https://github.com/snello-cms/snello-all-in-one.git
@@ -26,5 +24,3 @@ Snello backend and snello api in a single docker image.
      - Database/Schema: /Users/fiorenzo/IdeaProjectsSnello/snello-all-in-one/db/repository;MODE=MySQL;IGNORECASE=TRUE;DATABASE_TO_LOWER=TRUE;CASE_INSENSITIVE_IDENTIFIERS=TRUE
      - Username: sa
      - Password: ''    
-
-

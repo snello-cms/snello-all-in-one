@@ -1,27 +1,16 @@
 ### STAGE 1: GIT CLONE admin project AND api project ###
 FROM alpine/git  as gitter
 WORKDIR /app
-RUN git clone https://github.com/snello-cms/snello-admin.git
 RUN git clone https://github.com/snello-cms/snello-api.git
-
-### STAGE 3: ANGULAR BUILD web api, OVERRIDING THE BASE PATH IN THE INDEX PAGE ###
-FROM node:10-alpine as builder_web
-RUN mkdir ./ng-app
-COPY --from=gitter /app/snello-admin/src ./ng-app/src
-COPY --from=gitter /app/snello-admin/e2e ./ng-app/e2e
-COPY --from=gitter /app/snello-admin/*.json ./ng-app/
-COPY  override/snello-admin/index.html ./ng-app/src
-COPY  override/snello-admin/config.json ./ng-app/src/assets
-WORKDIR /ng-app
-RUN npm i && $(npm bin)/ng build --prod
 
 ### STAGE 4: MAVEN build api project, OVERRIDING application.yaml file ###
 FROM maven:3.6.1-jdk-11-slim as builder_api
 COPY --from=gitter /app/snello-api/pom.xml /tmp/
 COPY --from=gitter /app/snello-api/src /tmp/src
-RUN mkdir -p /tmp/src/main/resources/snello-admin
-COPY --from=builder_web /ng-app/dist/snello-admin/* /tmp/src/main/resources/snello-admin/
-COPY  override/snello-api/application.yaml /tmp/src/main/resources
+RUN mkdir /tmp/src/main/resources/snello-admin
+COPY override/static/snello-admin /tmp/src/main/resources/snello-admin
+COPY override/snello-admin/config.json /tmp/src/main/resources/snello-admin/assets/
+COPY override/snello-api/application.yaml /tmp/src/main/resources
 WORKDIR /tmp
 RUN mvn package -Dmaven.test.skip=true
 

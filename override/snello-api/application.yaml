@@ -38,11 +38,11 @@ micronaut:
         mapping: /files/**
         paths:
           - file:/home/snello/public/files
-      admin:
+      snello-admin:
         enabled: true
-        mapping: /admin/**
+        mapping: /snello-admin/**
         paths:
-          - classpath:admin
+          - classpath:snello-admin
   security:
     enabled: true
     endpoints:
